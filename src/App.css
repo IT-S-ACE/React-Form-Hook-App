@@ -28,7 +28,16 @@ input[type="data"] {
   background-image: none;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.form-control{
   margin-bottom: 20px;
+}
+
+.error{
+  color: red;
+  font-size: 12px;
+  text-align: left;
 }
 
 /* 
