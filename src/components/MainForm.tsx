@@ -7,7 +7,12 @@ export const MainForm = () => {
   type FormValues = {
     username: string,
     email: string,
-    channel: string
+    channel: string,
+    social:{
+      twitter : string,
+      facebook : string,
+    },
+    phoneNumbers : string[]
   }
 
   const form = useForm<FormValues>({
@@ -15,6 +20,11 @@ export const MainForm = () => {
       username: 'Batman',
       email: '',
       channel: '',
+      social:{
+        twitter: '',
+        facebook:'',
+      },
+      phoneNumbers: ['' , '']
     }
 
     //  From API
@@ -93,6 +103,38 @@ export const MainForm = () => {
             }
             })}/>
             <p className='error'>{errors.channel?.message}</p>
+            </div>
+
+            <div className='form-control'>
+            <label htmlFor="twitter">Twitter: </label>
+            <input 
+            type="text" 
+            id='twitter' 
+            {...register("social.twitter")}/>
+            </div>
+
+            <div className='form-control'>
+            <label htmlFor="facebook">FaceBook: </label>
+            <input 
+            type="text" 
+            id='facebook' 
+            {...register("social.facebook")}/>
+            </div>
+
+            <div className='form-control'>
+            <label htmlFor="primary-phone">Primary phone number: </label>
+            <input 
+            type="text" 
+            id='primary-phone' 
+            {...register("phoneNumbers.0")}/>
+            </div>
+
+            <div className='form-control'>
+            <label htmlFor="secondary-phone">Secondary phone number: </label>
+            <input
+            type="text"
+            id='secondary-phone'
+            {...register("phoneNumbers.1")}/>
             </div>
 
             <button>Submit</button>
