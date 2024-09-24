@@ -46,7 +46,7 @@ export const MainForm = () => {
     //   }
     // }
   })
-  const { register, control, handleSubmit, formState , watch} = form
+  const { register, control, handleSubmit, formState , watch, getValues} = form
 
   const { fields, append, remove } = useFieldArray({
     name: 'phNumber',
@@ -61,12 +61,18 @@ export const MainForm = () => {
     console.log('Form Submitted', data)
   }
 
-  useEffect(() => {
-    const subscription = watch((value) => {
-      console.log(value)
-    })
-    return () => subscription.unsubscribe()
-  } , [watch])
+  // getValues prorperty
+  const handleGetValues = () =>{
+    console.log('Get Values', getValues(['username', 'email', 'channel']))
+  }
+
+  // Watch Property
+  // useEffect(() => {
+  //   const subscription = watch((value) => {
+  //     console.log(value)
+  //   })
+  //   return () => subscription.unsubscribe()
+  // } , [watch])
 
   return (
     <div>
@@ -220,6 +226,7 @@ export const MainForm = () => {
         </div>
 
         <button>Submit</button>
+        <button type='button' onClick={handleGetValues}>Get Values</button>
       </form>
       <DevTool control={control} />
     </div>
