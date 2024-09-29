@@ -46,7 +46,7 @@ export const MainForm = () => {
     //   }
     // }
   })
-  const { register, control, handleSubmit, formState , watch, getValues} = form
+  const { register, control, handleSubmit, formState , watch, getValues, setValue} = form
 
   const { fields, append, remove } = useFieldArray({
     name: 'phNumber',
@@ -64,6 +64,15 @@ export const MainForm = () => {
   // getValues prorperty
   const handleGetValues = () =>{
     console.log('Get Values', getValues(['username', 'email', 'channel']))
+  }
+
+  // setValues prorperty
+  const handleSetValues = () =>{
+    setValue('username','', {
+      shouldValidate: true,
+      shouldDirty : true,
+      shouldTouch: true
+    })
   }
 
   // Watch Property
@@ -227,6 +236,7 @@ export const MainForm = () => {
 
         <button>Submit</button>
         <button type='button' onClick={handleGetValues}>Get Values</button>
+        <button type='button' onClick={handleSetValues}>Set Values</button>
       </form>
       <DevTool control={control} />
     </div>
