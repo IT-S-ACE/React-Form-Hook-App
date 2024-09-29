@@ -184,7 +184,10 @@ export const MainForm = () => {
           <input
             type="text"
             id='twitter'
-            {...register("social.twitter")} />
+            {...register("social.twitter", {
+              disabled : watch("channel") === '', // if channel is empty then it will still be disabled else it will not
+              required: "Enter Twitter Profile"
+            })} />
         </div>
 
         <div className='form-control'>
