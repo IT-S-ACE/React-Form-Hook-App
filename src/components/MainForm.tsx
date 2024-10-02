@@ -55,9 +55,12 @@ export const MainForm = () => {
 
   // const WatchForm = watch()
 
-  const { errors , touchedFields , dirtyFields , isDirty , isValid} = formState
+  const { errors , touchedFields , dirtyFields , isDirty , isValid,isSubmitting , isSubmitted , isSubmitSuccessful , submitCount} = formState
+
 
   console.log({touchedFields , dirtyFields , isDirty , isValid})
+
+  console.log({isSubmitting, isSubmitted , isSubmitSuccessful, submitCount})
 
   const onSubmit = (data: FormValues) => {
     console.log('Form Submitted', data)
@@ -244,7 +247,9 @@ export const MainForm = () => {
           </div>
         </div>
 
-        <button disabled={!isDirty || !isValid}>Submit</button>
+        <button 
+        // disabled={!isDirty || !isValid} // disabled the button until all fields are dirty or valid(filled with the correct values)
+        >Submit</button>
         <button type='button' onClick={handleGetValues}>Get Values</button>
         <button type='button' onClick={handleSetValues}>Set Values</button>
       </form>
