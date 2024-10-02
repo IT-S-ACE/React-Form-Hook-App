@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useForm, useFieldArray } from 'react-hook-form'
+import { useForm, useFieldArray, FieldErrors } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 
 export const MainForm = () => {
@@ -55,10 +55,17 @@ export const MainForm = () => {
 
   // const WatchForm = watch()
 
-  const { errors } = formState
+  const { errors , touchedFields , dirtyFields , isDirty , isValid} = formState
+
+  console.log({touchedFields , dirtyFields , isDirty , isValid})
 
   const onSubmit = (data: FormValues) => {
     console.log('Form Submitted', data)
+  }
+
+  //Handle the form submission error
+  const onError = (error : FieldErrors<FormValues>) => {
+    console.log('Form Error', error)
   }
 
   // getValues prorperty
@@ -85,7 +92,7 @@ export const MainForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
         <div className='form-control'>
           <label htmlFor="username">Username: </label>
           <input
@@ -237,7 +244,7 @@ export const MainForm = () => {
           </div>
         </div>
 
-        <button>Submit</button>
+        <button disabled={!isDirty || !isValid}>Submit</button>
         <button type='button' onClick={handleGetValues}>Get Values</button>
         <button type='button' onClick={handleSetValues}>Set Values</button>
       </form>
