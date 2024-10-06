@@ -46,7 +46,7 @@ export const MainForm = () => {
     //   }
     // }
   })
-  const { register, control, handleSubmit, formState , watch, getValues, setValue} = form
+  const { register, control, handleSubmit, formState , watch, getValues, setValue, reset} = form
 
   const { fields, append, remove } = useFieldArray({
     name: 'phNumber',
@@ -84,6 +84,13 @@ export const MainForm = () => {
       shouldTouch: true
     })
   }
+
+  // handle reset field values if submitted successfully
+  useEffect(() =>{
+    if(isSubmitSuccessful){
+      reset();
+    }
+  },[isSubmitSuccessful , reset])
 
   // Watch Property
   // useEffect(() => {
@@ -250,6 +257,7 @@ export const MainForm = () => {
         <button 
         // disabled={!isDirty || !isValid} // disabled the button until all fields are dirty or valid(filled with the correct values)
         >Submit</button>
+        <button type='button' onClick={() => reset()}>Reset</button>
         <button type='button' onClick={handleGetValues}>Get Values</button>
         <button type='button' onClick={handleSetValues}>Set Values</button>
       </form>
