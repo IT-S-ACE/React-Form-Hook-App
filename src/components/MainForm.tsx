@@ -33,7 +33,8 @@ export const MainForm = () => {
       phNumber: [{ number: '' }],
       age: 0,
       dob: new Date(),
-    }
+    },
+    mode:'onBlur' // modes that validate the field value when blur of it and otherwise (onChange, onTouched , etc...)
 
     //  From API
     // async () => {
