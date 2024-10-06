@@ -47,7 +47,7 @@ export const MainForm = () => {
     //   }
     // }
   })
-  const { register, control, handleSubmit, formState , watch, getValues, setValue, reset} = form
+  const { register, control, handleSubmit, formState , watch, getValues, setValue, reset, trigger} = form
 
   const { fields, append, remove } = useFieldArray({
     name: 'phNumber',
@@ -259,6 +259,7 @@ export const MainForm = () => {
         // disabled={!isDirty || !isValid} // disabled the button until all fields are dirty or valid(filled with the correct values)
         >Submit</button>
         <button type='button' onClick={() => reset()}>Reset</button>
+        <button type='button' onClick={() => trigger()}>Validate</button>
         <button type='button' onClick={handleGetValues}>Get Values</button>
         <button type='button' onClick={handleSetValues}>Set Values</button>
       </form>
